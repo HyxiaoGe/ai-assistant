@@ -1,7 +1,9 @@
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import { Chat } from "../components/Chat";
 
 export default function Home() {
-  return <main>test page</main>;
+  return (
+    <main>
+      <Chat />
+    </main>
+  );
 }
