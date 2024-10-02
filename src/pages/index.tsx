@@ -12,13 +12,29 @@ export default function Home() {
         <p className="text-xl mb-12 max-w-md mx-auto">
           探索无限可能，开启 AI 智能之旅
         </p>
-        <Link
-          href="/chat"
-          style={{ textDecoration: "none" }}
-          className="bg-white text-blue-600 font-bold py-3 px-8 rounded-full text-lg transition-all duration-300 hover:bg-blue-100 hover:scale-105 shadow-lg"
-        >
-          AI 聊天
-        </Link>
+        <div className="flex justify-center space-x-6">
+          <Link
+            style={{ textDecoration: "none" }}
+            href="/chat"
+            className="bg-white text-blue-600 font-bold py-3 px-8 rounded-full text-lg transition-all duration-300 hover:bg-blue-100 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-300 active:bg-blue-200"
+          >
+            AI 聊天
+          </Link>
+          <Link
+            style={{ textDecoration: "none" }}
+            href="/genpic"
+            className="bg-white text-blue-600 font-bold py-3 px-8 rounded-full text-lg transition-all duration-300 hover:bg-blue-100 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-300 active:bg-blue-200"
+          >
+            AI 生图
+          </Link>
+          <Link
+            style={{ textDecoration: "none" }}
+            href="/insight"
+            className="bg-white text-blue-600 font-bold py-3 px-8 rounded-full text-lg transition-all duration-300 hover:bg-blue-100 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-300 active:bg-blue-200"
+          >
+            信息集萃
+          </Link>
+        </div>
       </div>
       <style jsx>{`
         .stars {
