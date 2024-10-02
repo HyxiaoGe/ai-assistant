@@ -36,3 +36,68 @@
   .mark code {
     line-height: 1.2;
   }
+
+.codeWrapper {
+  position: relative;
+}
+
+.copyButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 32px;
+  height: 32px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s, background-color 0.3s;
+}
+
+.codeWrapper:hover .copyButton {
+  opacity: 1;
+}
+
+.copyButton:hover {
+  background-color: #45a049;
+}
+
+.copyButton.copied {
+  background-color: #45a049;
+}
+
+.copyButton svg {
+  width: 20px;
+  height: 20px;
+}
+
+.tooltip {
+  position: absolute;
+  top: 40px;
+  right: 5px;
+  background-color: #333;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 12px;
+  opacity: 0;
+  animation: fadeInOut 2s ease-in-out;
+}
+
+@keyframes fadeInOut {
+
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  10%,
+  90% {
+    opacity: 1;
+  }
+}

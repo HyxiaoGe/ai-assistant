@@ -200,7 +200,7 @@ export const Message = ({ sessionId }: Props) => {
                       "flex-col": item.role === "user",
                       "items-end": item.role === "user",
                     },
-                    "mt-4",
+                    "mt-4"
                   )}
                 >
                   <div>
@@ -223,7 +223,7 @@ export const Message = ({ sessionId }: Props) => {
                       "mt-1",
                       "w-full",
                       "max-w-4xl",
-                      "min-h-[3rem]",
+                      "min-h-[3rem]"
                     )}
                   >
                     {isUser ? (
@@ -243,7 +243,7 @@ export const Message = ({ sessionId }: Props) => {
               "justify-center",
               "self-end",
               "my-4",
-              "w-full",
+              "w-full"
             )}
           >
             <ActionIcon
