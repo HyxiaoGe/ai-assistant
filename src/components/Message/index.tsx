@@ -1,4 +1,4 @@
-import { useEffect, useState, KeyboardEvent } from "react";
+import React, { useEffect, useState, KeyboardEvent } from "react";
 import chatService from "@/utils/chatService";
 import { Markdown } from "../Markdown";
 import { Voice } from "../Voice";
@@ -14,7 +14,6 @@ import Link from "next/link";
 import * as chatStorage from "@/utils/chatStorage";
 import { ThemeSwitch } from "../ThemeSwitch";
 import { USERMAP } from "@/utils/constant";
-
 import { AssistantSelect } from "../AssistantSelect";
 import {
   IconSend,
@@ -24,31 +23,34 @@ import {
   IconHeadphones,
   IconHeadphonesOff,
 } from "@tabler/icons-react";
-
 import { Assistant, MessageList } from "@/types";
 import clsx from "clsx";
 
 type Props = {
   sessionId: string;
+  showAIAssistant?: boolean;
+  showAssistantManagement?: boolean;
+  showHeader?: boolean;
+  showFooter?: boolean;
+  showVoiceToggle?: boolean;
+  showThemeSwitch?: boolean;
 };
 
-export const Message = ({ sessionId }: Props) => {
+export const Message = ({
+  sessionId,
+  showAIAssistant = true,
+  showAssistantManagement = true,
+  showHeader = true,
+  showFooter = true,
+  showVoiceToggle = true,
+  showThemeSwitch = true
+}: Props) => {
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<MessageList>([]);
   const [assistant, setAssistant] = useState<Assistant>();
   const [mode, setMode] = useState<"text" | "voice">("text");
   const { colorScheme } = useMantineColorScheme();
-  const updateMessage = (msg: MessageList) => {
-    setMessage(msg);
-    chatStorage.updateMessage(sessionId, msg);
-  };
-  chatService.actions = {
-    onCompleting: (sug) => setSuggestion(sug),
-    onCompleted: () => {
-      setLoading(false);
-    },
-  };
 
   useEffect(() => {
     const session = chatStorage.getSession(sessionId);
@@ -60,6 +62,17 @@ export const Message = ({ sessionId }: Props) => {
     }
   }, [sessionId, mode]);
 
+  const updateMessage = (msg: MessageList) => {
+    setMessage(msg);
+    chatStorage.updateMessage(sessionId, msg);
+  };
+  chatService.actions = {
+    onCompleting: (sug) => setSuggestion(sug),
+    onCompleted: () => {
+      setLoading(false);
+    },
+  };
+
   const onAssistantChange = (assistant: Assistant) => {
     setAssistant(assistant);
     chatStorage.updateSession(sessionId, {
@@ -70,6 +83,7 @@ export const Message = ({ sessionId }: Props) => {
   const onClear = () => {
     updateMessage([]);
   };
+
   const onKeyDown = (evt: KeyboardEvent<HTMLTextAreaElement>) => {
     if (evt.keyCode === 13 && !evt.shiftKey) {
       evt.preventDefault();
@@ -131,6 +145,7 @@ export const Message = ({ sessionId }: Props) => {
 
   return (
     <div className="flex flex-col h-screen w-full">
+      {showHeader && (
       <div
         className={clsx([
           "flex",
@@ -141,6 +156,7 @@ export const Message = ({ sessionId }: Props) => {
           "h-[6rem]",
         ])}
       >
+        {showAIAssistant && (
         <Popover width={100} position="bottom" withArrow shadow="sm">
           <Popover.Target>
             <Button
@@ -158,11 +174,15 @@ export const Message = ({ sessionId }: Props) => {
             </Link>
           </Popover.Dropdown>
         </Popover>
+        )}
         <div className="flex items-center">
+          {showAssistantManagement && (
           <AssistantSelect
             value={assistant?.id!}
             onChange={onAssistantChange}
           ></AssistantSelect>
+          )}
+          {showVoiceToggle && (
           <ActionIcon
             size="sm"
             onClick={() => setMode(mode === "text" ? "voice" : "text")}
@@ -173,9 +193,11 @@ export const Message = ({ sessionId }: Props) => {
               <IconHeadphonesOff color="gray" size="1rem"></IconHeadphonesOff>
             )}
           </ActionIcon>
+          )}
         </div>
         <ThemeSwitch></ThemeSwitch>
       </div>
+      )}
       {mode === "text" ? (
         <>
           <div
@@ -236,6 +258,7 @@ export const Message = ({ sessionId }: Props) => {
               );
             })}
           </div>
+          {showFooter && (
           <div
             className={clsx(
               "flex",
@@ -269,6 +292,7 @@ export const Message = ({ sessionId }: Props) => {
               {loading ? <IconSendOff /> : <IconSend />}
             </ActionIcon>
           </div>
+          )}
         </>
       ) : (
         <div className="h-[calc(100vh-6rem)] w-full">
