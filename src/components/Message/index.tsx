@@ -33,7 +33,6 @@ type Props = {
   showHeader?: boolean;
   showFooter?: boolean;
   showVoiceToggle?: boolean;
-  showThemeSwitch?: boolean;
 };
 
 export const Message = ({
@@ -43,7 +42,6 @@ export const Message = ({
   showHeader = true,
   showFooter = true,
   showVoiceToggle = true,
-  showThemeSwitch = true
 }: Props) => {
   const [prompt, setPrompt] = useState("");
   const [loading, setLoading] = useState(false);

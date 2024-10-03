@@ -1,6 +1,9 @@
-export const MESSAGE_STORE = "ai_assistant_message";
-export const SESSION_STORE = "ai_assistant_session";
-export const ASSISTANT_STORE = "ai_assistant";
+export const MESSAGE_CHAT_STORE = "ai_assistant_chat_message";
+export const SESSION_CHAT_STORE = "ai_assistant_chat_session";
+export const ASSISTANT_CHAT_PROMPT_STORE = "ai_assistant_chat_prompt";
+
+export const MESSAGE_GENPIC_STORE = "ai_assistant_genpic_message";
+export const SESSION_GENPIC_STORE = "ai_assistant_genpic_session";
 
 export const MAX_TOKENS = 1000;
 export const TEMPERATURE = 0.8;

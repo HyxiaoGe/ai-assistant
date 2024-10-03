@@ -1,4 +1,3 @@
-// 存储 chatLogs
 import type {
   MessageList,
   ChatLogsStorageType,
@@ -6,15 +5,15 @@ import type {
   Session,
 } from "@/types";
 import { getLocalStorage, setLocalStorage } from "./storage";
-import { SESSION_CHAT_STORE, MESSAGE_CHAT_STORE } from "./constant";
+import { SESSION_GENPIC_STORE, MESSAGE_GENPIC_STORE } from "./constant";
 import assistantStore from "./assistantStore";
 
 export const getMessageStore = () => {
-  let list = getLocalStorage<ChatLogsStorageType>(MESSAGE_CHAT_STORE);
+  let list = getLocalStorage<ChatLogsStorageType>(MESSAGE_GENPIC_STORE);
 
   if (!list) {
     list = {};
-    setLocalStorage(MESSAGE_CHAT_STORE, list);
+    setLocalStorage(MESSAGE_GENPIC_STORE, list);
   }
   return list;
 };
@@ -27,35 +26,35 @@ export const getMessage = (key: string) => {
 export const updateMessage = (key: string, logs: MessageList) => {
   const list = getMessageStore();
   list[key] = logs;
-  setLocalStorage(MESSAGE_CHAT_STORE, list);
+  setLocalStorage(MESSAGE_GENPIC_STORE, list);
 };
 
 export const removeMessage = (key: string) => {
   const list = getMessageStore();
   delete list[key];
-  setLocalStorage(MESSAGE_CHAT_STORE, list);
+  setLocalStorage(MESSAGE_GENPIC_STORE, list);
 };
 
 export const getSessionStore = (): SessionList => {
-  let list = getLocalStorage<SessionList>(SESSION_CHAT_STORE);
+  let list = getLocalStorage<SessionList>(SESSION_GENPIC_STORE);
   const assistants = assistantStore.getList()[0];
   if (!list) {
     const session = {
-      name: "新聊天",
+      name: "新生图",
       assistant: assistants.id,
       id: Date.now().toString(),
     };
     list = [session];
     updateMessage(session.id, []);
-    setLocalStorage(SESSION_CHAT_STORE, list);
+    setLocalStorage(SESSION_GENPIC_STORE, list);
   }
   return list;
 };
 
 const updateSessionStore = (list: SessionList) => {
   console.log(list);
-  console.log(getLocalStorage(SESSION_CHAT_STORE));
-  setLocalStorage(SESSION_CHAT_STORE, list);
+  console.log(getLocalStorage(SESSION_GENPIC_STORE));
+  setLocalStorage(SESSION_GENPIC_STORE, list);
 };
 
 export const addSession = (session: Session): SessionList => {

@@ -1,10 +1,10 @@
 import { type } from 'os';
 import { getLocalStorage, setLocalStorage } from './storage';
-import { ASSISTANT_STORE, ASSISTANT_INIT } from './constant';
+import { ASSISTANT_CHAT_PROMPT_STORE, ASSISTANT_INIT } from "./constant";
 import type { AssistantList, Assistant } from "@/types";
 
 const getList = (): AssistantList => {
-    let list = getLocalStorage(ASSISTANT_STORE) as AssistantList;
+    let list = getLocalStorage(ASSISTANT_CHAT_PROMPT_STORE) as AssistantList;
 
     if (!list) {
         list = ASSISTANT_INIT.map((item, index) => {
@@ -20,7 +20,7 @@ const getList = (): AssistantList => {
 }
 
 const updateList = (list: AssistantList) => {
-    setLocalStorage(ASSISTANT_STORE, list);
+    setLocalStorage(ASSISTANT_CHAT_PROMPT_STORE, list);
 }
 
 const addAssistant = (assistant: Assistant): AssistantList => {

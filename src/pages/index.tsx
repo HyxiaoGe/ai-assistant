@@ -20,13 +20,13 @@ export default function Home() {
           >
             AI 聊天
           </Link>
-          <Link
+          {/* <Link
             style={{ textDecoration: "none" }}
             href="/genpic"
             className="bg-white text-blue-600 font-bold py-3 px-8 rounded-full text-lg transition-all duration-300 hover:bg-blue-100 hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-blue-300 active:bg-blue-200"
           >
             AI 生图
-          </Link>
+          </Link> */}
           <Link
             style={{ textDecoration: "none" }}
             href="/insight"
