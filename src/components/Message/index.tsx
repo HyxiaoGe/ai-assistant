@@ -23,7 +23,7 @@ import {
   IconHeadphones,
   IconHeadphonesOff,
 } from "@tabler/icons-react";
-import { Assistant, MessageList } from "@/types";
+import { Assistant, MessageList } from "@/types/chat";
 import clsx from "clsx";
 
 type Props = {
@@ -144,57 +144,60 @@ export const Message = ({
   return (
     <div className="flex flex-col h-screen w-full">
       {showHeader && (
-      <div
-        className={clsx([
-          "flex",
-          "justify-between",
-          "items-center",
-          "p-4",
-          "shadow-sm",
-          "h-[6rem]",
-        ])}
-      >
-        {showAIAssistant && (
-        <Popover width={100} position="bottom" withArrow shadow="sm">
-          <Popover.Target>
-            <Button
-              size="sm"
-              variant="subtle"
-              className="px-1"
-              rightIcon={<IconDotsVertical size="1rem"></IconDotsVertical>}
-            >
-              AI 助理
-            </Button>
-          </Popover.Target>
-          <Popover.Dropdown>
-            <Link href="/assistant" className="no-underline text-green-600">
-              助理管理
-            </Link>
-          </Popover.Dropdown>
-        </Popover>
-        )}
-        <div className="flex items-center">
-          {showAssistantManagement && (
-          <AssistantSelect
-            value={assistant?.id!}
-            onChange={onAssistantChange}
-          ></AssistantSelect>
+        <div
+          className={clsx([
+            "flex",
+            "justify-between",
+            "items-center",
+            "p-4",
+            "shadow-sm",
+            "h-[6rem]",
+          ])}
+        >
+          {showAIAssistant && (
+            <Popover width={100} position="bottom" withArrow shadow="sm">
+              <Popover.Target>
+                <Button
+                  size="sm"
+                  variant="subtle"
+                  className="px-1"
+                  rightIcon={<IconDotsVertical size="1rem"></IconDotsVertical>}
+                >
+                  AI 助理
+                </Button>
+              </Popover.Target>
+              <Popover.Dropdown>
+                <Link href="/assistant" className="no-underline text-green-600">
+                  助理管理
+                </Link>
+              </Popover.Dropdown>
+            </Popover>
           )}
-          {showVoiceToggle && (
-          <ActionIcon
-            size="sm"
-            onClick={() => setMode(mode === "text" ? "voice" : "text")}
-          >
-            {mode === "text" ? (
-              <IconHeadphones color="green" size="1rem"></IconHeadphones>
-            ) : (
-              <IconHeadphonesOff color="gray" size="1rem"></IconHeadphonesOff>
+          <div className="flex items-center">
+            {showAssistantManagement && (
+              <AssistantSelect
+                value={assistant?.id!}
+                onChange={onAssistantChange}
+              ></AssistantSelect>
             )}
-          </ActionIcon>
-          )}
+            {showVoiceToggle && (
+              <ActionIcon
+                size="sm"
+                onClick={() => setMode(mode === "text" ? "voice" : "text")}
+              >
+                {mode === "text" ? (
+                  <IconHeadphones color="green" size="1rem"></IconHeadphones>
+                ) : (
+                  <IconHeadphonesOff
+                    color="gray"
+                    size="1rem"
+                  ></IconHeadphonesOff>
+                )}
+              </ActionIcon>
+            )}
+          </div>
+          <ThemeSwitch></ThemeSwitch>
         </div>
-        <ThemeSwitch></ThemeSwitch>
-      </div>
       )}
       {mode === "text" ? (
         <>
@@ -257,39 +260,39 @@ export const Message = ({
             })}
           </div>
           {showFooter && (
-          <div
-            className={clsx(
-              "flex",
-              "items-center",
-              "justify-center",
-              "self-end",
-              "my-4",
-              "w-full"
-            )}
-          >
-            <ActionIcon
-              className="mr-2"
-              disabled={loading}
-              onClick={() => onClear()}
+            <div
+              className={clsx(
+                "flex",
+                "items-center",
+                "justify-center",
+                "self-end",
+                "my-4",
+                "w-full"
+              )}
             >
-              <IconEraser></IconEraser>
-            </ActionIcon>
-            <Textarea
-              placeholder="Enter 发送消息；Shift + Enter 换行；"
-              className="w-3/5"
-              value={prompt}
-              disabled={loading}
-              onKeyDown={(evt) => onKeyDown(evt)}
-              onChange={(evt) => setPrompt(evt.target.value)}
-            ></Textarea>
-            <ActionIcon
-              color="green"
-              className="ml-2"
-              onClick={() => onSubmit()}
-            >
-              {loading ? <IconSendOff /> : <IconSend />}
-            </ActionIcon>
-          </div>
+              <ActionIcon
+                className="mr-2"
+                disabled={loading}
+                onClick={() => onClear()}
+              >
+                <IconEraser></IconEraser>
+              </ActionIcon>
+              <Textarea
+                placeholder="Enter 发送消息；Shift + Enter 换行；"
+                className="w-3/5"
+                value={prompt}
+                disabled={loading}
+                onKeyDown={(evt) => onKeyDown(evt)}
+                onChange={(evt) => setPrompt(evt.target.value)}
+              ></Textarea>
+              <ActionIcon
+                color="green"
+                className="ml-2"
+                onClick={() => onSubmit()}
+              >
+                {loading ? <IconSendOff /> : <IconSend />}
+              </ActionIcon>
+            </div>
           )}
         </>
       ) : (

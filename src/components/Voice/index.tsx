@@ -7,9 +7,9 @@ import {
   IconCircle,
 } from "@tabler/icons-react";
 import * as chatStorage from "@/utils/chatStorage";
-import { Assistant, MessageList } from "@/types";
+import { Assistant, MessageList } from "@/types/chat";
 // import MicroRecorder from "mic-recorder-to-mp3";
-const MicroRecorder = require('mic-recorder-to-mp3');
+const MicroRecorder = require("mic-recorder-to-mp3");
 
 const Mp3Recorder = new MicroRecorder({
   bitRate: 1128,
@@ -38,7 +38,7 @@ export function Voice({
       },
       () => {
         setIsGranted(false);
-      },
+      }
     );
   });
   const start = () => {
@@ -68,7 +68,7 @@ export function Voice({
     formData.append("options", JSON.stringify(options));
     formData.append(
       "history",
-      JSON.stringify(history.slice(-assistant.max_log)),
+      JSON.stringify(history.slice(-assistant.max_log))
     );
     const resp = await fetch("/api/voice", {
       method: "POST",

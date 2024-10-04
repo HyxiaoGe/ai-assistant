@@ -4,7 +4,7 @@ import type {
   ChatLogsStorageType,
   SessionList,
   Session,
-} from "@/types";
+} from "@/types/chat";
 import { getLocalStorage, setLocalStorage } from "./storage";
 import { SESSION_CHAT_STORE, MESSAGE_CHAT_STORE } from "./constant";
 import assistantStore from "./assistantStore";

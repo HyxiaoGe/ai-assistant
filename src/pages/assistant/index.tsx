@@ -1,4 +1,4 @@
-import { AssistantList, EditAssistant } from "@/types";
+import { AssistantList, EditAssistant } from "@/types/chat";
 import assistantStore from "@/utils/assistantStore";
 import { ASSISTANT_INIT } from "@/utils/constant";
 import { useDisclosure } from "@mantine/hooks";

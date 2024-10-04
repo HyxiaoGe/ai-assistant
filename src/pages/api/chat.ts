@@ -1,5 +1,5 @@
 import type { NextRequest } from "next/server";
-import { type MessageList } from "@/types";
+import { type MessageList } from "@/types/chat";
 import {
   createParser,
   ParseEvent,

@@ -1,4 +1,4 @@
-import { Message } from "../types";
+import { Message } from "../types/chat";
 
 type StreamParams = {
   prompt: string;

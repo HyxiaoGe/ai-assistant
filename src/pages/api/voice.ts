@@ -2,7 +2,7 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { openai } from "@/utils/openai";
 import { Uploadable } from "openai/uploads";
-import { MessageList } from "@/types";
+import { MessageList } from "@/types/chat";
 export default async function handler(req: NextRequest) {
   let formData = await req.formData();
   const file = formData.get("file") as Uploadable;
@@ -48,7 +48,7 @@ export default async function handler(req: NextRequest) {
       headers: {
         "Content-Type": "application/json",
       },
-    },
+    }
   );
 }
 

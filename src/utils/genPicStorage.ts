@@ -3,7 +3,7 @@ import type {
   ChatLogsStorageType,
   SessionList,
   Session,
-} from "@/types";
+} from "@/types/chat";
 import { getLocalStorage, setLocalStorage } from "./storage";
 import { SESSION_GENPIC_STORE, MESSAGE_GENPIC_STORE } from "./constant";
 import assistantStore from "./assistantStore";

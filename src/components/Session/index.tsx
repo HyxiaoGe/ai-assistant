@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import type { Session as ISession, SessionList } from "@/types";
+import type { Session as ISession, SessionList } from "@/types/chat";
 import * as chatStorage from "@/utils/chatStorage";
 import { IconTrash, IconMessagePlus } from "@tabler/icons-react";
 import clsx from "clsx";
