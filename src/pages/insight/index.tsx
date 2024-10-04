@@ -30,7 +30,7 @@ const InsightPage: React.FC = () => {
         </div>
         <div className={styles.sideColumn}>
           <OpenAINews />
-          <AIHelper />
+          {/* <AIHelper /> */}
         </div>
       </main>
 
