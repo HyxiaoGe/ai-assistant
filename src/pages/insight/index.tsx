@@ -4,13 +4,11 @@ import CategoryTabs from "@/components/CategoryTabs";
 import Headlines from "@/sections/Headlines";
 import DataVisualization from "@/components/DataVisualization";
 import OpenAINews from "@/sections/OpenAINews";
-import AIHelper from "@/components/AIHelper";
 
 import styles from "./index.module.css";
 
 const InsightPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState("快讯");
-
   return (
     <div className={styles.insightPage}>
       <header className={styles.header}>
@@ -26,7 +24,9 @@ const InsightPage: React.FC = () => {
 
       <main className={styles.contentLayout}>
         <div className={styles.newsColumn}>
-          <Headlines category={activeCategory} />
+          <Headlines
+            category={activeCategory}
+          />
         </div>
         <div className={styles.sideColumn}>
           <OpenAINews />

@@ -7,11 +7,20 @@ interface CategoryTabsProps {
   onCategoryChange: (category: string) => void;
 }
 
+export const categoryPlatformMap = {
+  快讯: ["zaobao"],
+  技术: ["chlinlearn"],
+  生活: ["oeeee"],
+  AI: ["deeplearning"],
+  Youtube: ["Youtube"],
+  "X(原Twitter)": ["Twitter"],
+};
+
 const CategoryTabs: React.FC<CategoryTabsProps> = ({
   activeCategory,
   onCategoryChange,
 }) => {
-  const categories = ["快讯", "技术", "生活", "AI", "Youtube", "X(原Twitter)"];
+  const categories = Object.keys(categoryPlatformMap);
 
   return (
     <div className={styles.categoryTabs}>
