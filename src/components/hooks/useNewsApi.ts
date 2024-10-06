@@ -18,7 +18,7 @@ export const useNewsApi = () => {
     const fetchNews = async () => {
       try {
         const cachedNews = localStorage.getItem("news");
-        const cachedTime = localStorage.getItem("newsTimestamp");
+        const cachedTime = localStorage.getItem("updateTimestamp");
 
         if (cachedNews && cachedTime) {
           const parsedNews = JSON.parse(cachedNews);
@@ -47,7 +47,7 @@ export const useNewsApi = () => {
         setError(null);
 
         localStorage.setItem("news", JSON.stringify(newsData));
-        localStorage.setItem("newsTimestamp", Date.now().toString());
+        localStorage.setItem("updateTimestamp", Date.now().toString());
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to fetch news");
         console.error(err);
