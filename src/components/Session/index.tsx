@@ -52,7 +52,7 @@ export const Session = ({
   const createSession = () => {
     const assistantList = assistantStore.getList();
     const newSession: ISession = {
-      name: `session-${sessionList.length + 1}`,
+      name: `新会话-${sessionList.length + 1}`,
       assistant: assistantList[0].id,
       id: Date.now().toString(),
     };

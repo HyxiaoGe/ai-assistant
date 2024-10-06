@@ -15,6 +15,9 @@ import * as chatStorage from "@/utils/chatStorage";
 import { ThemeSwitch } from "../ThemeSwitch";
 import { USERMAP } from "@/utils/constant";
 import { AssistantSelect } from "../AssistantSelect";
+import apiClient from "../hooks/apiClient";
+import toast, { Toaster } from "react-hot-toast";
+
 import {
   IconSend,
   IconSendOff,
@@ -119,11 +122,21 @@ export const Message = ({
     chatStorage.updateMessage(sessionId, msg);
   };
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
+    console.log("onSubmit", prompt);
     if (loading) {
       return chatService.cancel();
     }
     if (!prompt.trim()) return;
+    const isCompliant = await checkPromptCompliance(prompt);
+    console.log("isCompliant", isCompliant);
+    if (isCompliant) {
+      toast.error("内容不合规，请重新输入！！！", {
+        duration: 3000,
+        position: "top-center",
+      });
+      return;
+    }
     let list: MessageList = [
       ...message,
       {
@@ -139,6 +152,21 @@ export const Message = ({
       history: list.slice(-assistant?.max_log!),
     });
     setPrompt("");
+  };
+
+  const checkPromptCompliance = async (prompt: string) => {
+    try {
+      const response = await apiClient.post(
+        "/sensitive/check-word-compliance",
+        {
+          prompt,
+        }
+      );
+      return response.data.data;
+    } catch (error) {
+      console.error("合规性检查失败:", error);
+      return false;
+    }
   };
 
   return (

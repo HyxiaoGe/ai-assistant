@@ -41,7 +41,7 @@ export const getSessionStore = (): SessionList => {
   const assistants = assistantStore.getList()[0];
   if (!list) {
     const session = {
-      name: "新聊天",
+      name: "新会话",
       assistant: assistants.id,
       id: Date.now().toString(),
     };
