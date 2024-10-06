@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Pagination from "@/components/Pagination";
 import { useAISummaryApi } from "@/components/hooks/useAISummary";
+import { formatDateToChinese } from "../utils/dateAFormatters";
 
 const OpenAINews: React.FC = () => {
   const { aiSummary, loading, error } = useAISummaryApi();
@@ -25,7 +26,7 @@ const OpenAINews: React.FC = () => {
       <h3 className="font-semibold">{currentAiSummary.title}</h3>
       <p className="text-red-600">
         <span className="font-bold">时间: </span>
-        {currentAiSummary.publicationDate}
+        {formatDateToChinese(currentAiSummary.publicationDate)}
       </p>
       <p>
         <span className="font-bold">关键词: </span>

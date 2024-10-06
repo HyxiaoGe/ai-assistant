@@ -1,10 +1,7 @@
 import React from "react";
 import { useNewsApi } from "../components/hooks/useNewsApi";
 import { categoryPlatformMap } from "../components/CategoryTabs";
-import {
-  formatDateToChinese,
-  formatRelativeTime,
-} from "../utils/dateAFormatters";
+import { formatDateToChinese } from "../utils/dateAFormatters";
 
 interface HeadlinesProps {
   category: string;

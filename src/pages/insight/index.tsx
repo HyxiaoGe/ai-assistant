@@ -11,9 +11,9 @@ const InsightPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState("快讯");
   return (
     <div className={styles.insightPage}>
-      <header className={styles.header}>
+      {/* <header className={styles.header}>
         <SearchBar />
-      </header>
+      </header> */}
 
       <nav className={styles.categoryNav}>
         <CategoryTabs
@@ -24,19 +24,17 @@ const InsightPage: React.FC = () => {
 
       <main className={styles.contentLayout}>
         <div className={styles.newsColumn}>
-          <Headlines
-            category={activeCategory}
-          />
+          <Headlines category={activeCategory} />
         </div>
         <div className={styles.sideColumn}>
           <OpenAINews />
           {/* <AIHelper /> */}
         </div>
       </main>
-
+      {/* 
       <section className={styles.visualizationSection}>
         <DataVisualization />
-      </section>
+      </section> */}
     </div>
   );
 };
