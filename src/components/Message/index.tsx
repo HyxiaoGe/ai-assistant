@@ -93,6 +93,13 @@ export const Message = ({
   };
 
   const setSuggestion = (suggestion: string) => {
+    // 检查是否包含特殊的错误模式
+    if (
+      suggestion.startsWith("<!DOCTYPE html>") &&
+      suggestion.includes('data-next-hide-fouc="true"')
+    ) {
+      suggestion = "Error: 当前服务连接失败，请稍后重试！！！";
+    }
     if (suggestion === "") return;
     const len = message.length;
     const lastMessage = len ? message[len - 1] : null;
@@ -123,7 +130,6 @@ export const Message = ({
   };
 
   const onSubmit = async () => {
-    console.log("onSubmit", prompt);
     if (loading) {
       return chatService.cancel();
     }
